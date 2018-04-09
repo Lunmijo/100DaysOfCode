@@ -6,8 +6,8 @@ package lunmijo.days100.coding;
  */
 public class MatrixOperations {
 
-    public static double find_determinant(double[][] matrix){
-        double det = 0;
+    public static double find_determinant(double[][] matrix) {
+       double det = 0;
         if (matrix.length == 2) {
             det = matrix[0][0] * matrix[1][1] - matrix[1][0]*matrix[0][1];
         }
@@ -20,19 +20,22 @@ public class MatrixOperations {
                     matrix[0][1] * matrix[1][0] * matrix[2][2];
         }
         else {
-            int coefficient;
-            for(int i = 0; i < matrix.length; i++) {
-                if(i % 2 == 1){
-                    coefficient = -1;
-                }
-                else {
-                    coefficient = 1;
-                }
-                det += coefficient * matrix[0][i] * find_determinant(get_minor(matrix,0,i));
+            for (int j = 0; j < matrix.length; j++) {
+                det += matrix[0][j] * algebraic_complement(matrix, 0, j);
             }
         }
-
         return det;
+    }
+
+    private static double algebraic_complement(double[][] matrix, int numberOfRow, int numberOfColumn) {
+        int coefficient;
+        if((numberOfRow+numberOfColumn) % 2 == 1){
+            coefficient = -1;
+        }
+        else {
+            coefficient = 1;
+        }
+        return (coefficient * find_determinant(get_minor(matrix,numberOfRow,numberOfColumn)));
     }
 
     private static double[][] get_minor(double[][] matrix, int row, int column) {
