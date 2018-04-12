@@ -8,21 +8,17 @@ import java.util.Random;
 public class MatrixOperations {
 
     static int find_min_element_in_row(double[][] matrix, int rowNumber) {
-        int minElementPosition = -1;
-        for (int j = 0; j < matrix.length-1; j++) {
-                if (matrix[rowNumber][j] < matrix[rowNumber][j+1] && matrix[rowNumber][j] != 0) {
+        int minElementPosition = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 1; j < matrix.length; j++) {
+                if (matrix[i][j] < matrix.length) {
                     minElementPosition = j;
                 }
-                else if(matrix[rowNumber][j+1] != 0) {
-                    minElementPosition = j + 1;
-                }
-                else {
-                    continue;
-                }
+            }
         }
         return minElementPosition;
     }
-
+    
     public static double find_determinant(double[][] matrix) {
        double det = 0;
         if (matrix.length == 2) {
