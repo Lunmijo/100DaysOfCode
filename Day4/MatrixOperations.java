@@ -19,6 +19,17 @@ public class MatrixOperations {
         return minElementPosition;
     }
     
+     public static double[][] swapColumns(int numberOfColumnToSwap, int numberOfColumnFromSwap, double[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                double temp = matrix[i][numberOfColumnToSwap];
+                matrix[i][numberOfColumnToSwap] = matrix[i][numberOfColumnFromSwap];
+                matrix[i][numberOfColumnFromSwap] = temp;
+            }
+        }
+        return matrix;
+    }
+    
     public static double find_determinant(double[][] matrix) {
        double det = 0;
         if (matrix.length == 2) {
